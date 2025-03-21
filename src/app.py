@@ -98,5 +98,18 @@ def nova_viagem():
         return redirect(url_for('home'))
     return render_template('nova_viagem.html')
 
+@app.route('/excluir-viagem', methods=['POST'])
+def excluir_viagem ():
+    viagem_id = request.form.get ('viagem_id')
+    database.apagar_viagens (viagem_id)
+    return redirect (url_for ('home'))
+
+@app.route('/excluir-usuario', methods=['POST'])
+def excluir_usuario ():
+    usuario_id = request.form.get ('usuario_id')
+    database.apagar_usuario (usuario_id)
+    return redirect (('/usuarios'))
+    
+
 if __name__ == '__main__':
     app.run(debug=True) 
